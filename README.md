@@ -1,4 +1,4 @@
-# MongoDB tutorial
+# MongoDB
 
 MongoDB is a non-relational database also known as a NoSQL database. 
 One of the differences between a MongoDB database and a relational
@@ -17,13 +17,13 @@ and each row represents an entry. MongoDB is also schemaless which means
 that documents can have different keys in them. 
 
 ## Installation and setup
-#### mac
-*Installing with HomeBrew*  
+### mac installation 
+--Installing with HomeBrew--   
 The easiest way to install MongoDBon a Mac is with HomeBrew.  HomeBrew is 
 a package mananger for macs. To download HomeBrew, go to [http://brew.sh/](http://brew.sh/).
 Then from your terminal you will type the command `$ brew install mongodb`.     
 
-*Installing from a tar file*
+--Installing from a tar file--  
 Download MongoDB at [https://www.mongodb.com/download-center#community](https://www.mongodb.com/download-center#community).
 From your terminal, navigate to the directory the file was saved to.  If
 it was saved to your downloads directory you would type `$ cd ~/Downloads/`.
@@ -39,7 +39,7 @@ enviroment variables.  Open the file from your terminal by typing the command
 `$ vi ~/.bash_profile`. You will add mongodb to your $PATH variable like so:
 `export PATH=/usr/local/mongodb/bin:$PATH`.  
 
-*Running MongoDB*
+--Running MongoDB--  
 One of the commands you will use is `mongod` which will start your MongodB
 server. You will also need to create the directory where the MongoDB server will store its data. By default it is /data/db. To do that from your terminal enter the following commands:  
 
@@ -79,7 +79,10 @@ deletes collection
 
 deletes database
 > db.dropDatabase();
+```
 
+## CRUD operations
+```bash
 finds all items matching query
 > db.collection_name.find(query)
 
@@ -97,15 +100,11 @@ updates items that match query in the collection_name collection with data objec
 
 removes all items from collection_name that matches query criteria
 > db.collection_name.remove(query)
-
 ```
 
-## Creating, reading, updating and deleting data?
-
-## MongoDB and Node?
+## MongoDB and Node
 
 ## Hosting a MongoDB server in the cloud
-
 
 ## Additional Resources
 [MongoDB download](https://www.mongodb.com/download-center#community)  
