@@ -18,12 +18,12 @@ that documents can have different keys in them.
 
 ## Installation and setup
 ### mac installation 
---Installing with HomeBrew--   
+__Installing with HomeBrew__   
 The easiest way to install MongoDBon a Mac is with HomeBrew.  HomeBrew is 
 a package mananger for macs. To download HomeBrew, go to [http://brew.sh/](http://brew.sh/).
 Then from your terminal you will type the command `$ brew install mongodb`.     
 
---Installing from a tar file--  
+__Installing from a tar file__  
 Download MongoDB at [https://www.mongodb.com/download-center#community](https://www.mongodb.com/download-center#community).
 From your terminal, navigate to the directory the file was saved to.  If
 it was saved to your downloads directory you would type `$ cd ~/Downloads/`.
@@ -39,7 +39,7 @@ enviroment variables.  Open the file from your terminal by typing the command
 `$ vi ~/.bash_profile`. You will add mongodb to your $PATH variable like so:
 `export PATH=/usr/local/mongodb/bin:$PATH`.  
 
---Running MongoDB--  
+__Running MongoDB__
 One of the commands you will use is `mongod` which will start your MongodB
 server. You will also need to create the directory where the MongoDB server will store its data. By default it is /data/db. To do that from your terminal enter the following commands:  
 
