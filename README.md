@@ -78,7 +78,7 @@ prints the names of the databases on the database server which the console is co
 
 ### Creating documents
 
-`db.collection_name.insert(document)`  
+__db.collection_name.insert(document)__  
 Adds a document to the collection_name collection. Creates a collection if 
 it doesn't exist. Example: create a collection named users in the test database and insert a document.
 ```bash
@@ -93,7 +93,7 @@ Prints list of collections in the selected database.
 
 ### Reading documents
 
-`db.collection_name.find()`  
+__db.collection_name.find()__  
 Returns all documents in the collection <collection_name>.  Alternatively,
 you can use `db.collection_name.find({}). Example:
 Get all of the documents from the users collection.
@@ -101,7 +101,7 @@ Get all of the documents from the users collection.
 > db.users.find()  
 ```
 
-`db.collection_name.find(filter)`  
+__db.collection_name.find(filter)__  
 Returns all documents in the collection <collection_name> matching the filter.
 The filter is an object that has the form `{field: value}`. 
 Example: find the document with the first name "Alberta".
@@ -110,11 +110,11 @@ Example: find the document with the first name "Alberta".
 ```
 TASK: find a document with a different first name.  
 
-`db.collection_name.find({field1: value, field2: value})`  
+__db.collection_name.find({field1: value, field2: value})__  
 Returns documents from the collection <collection_name> based on more than one field
 
 
-`db.collection_name.find(filter, projection)`  
+__db.collection_name.find(filter, projection)__  
 Returns the documents from the collection <collection_name> where filter is
 the criteria for the doucments to return and projection in an object that 
 specifies the fields to return from the document.  Example: find the document with the first name "Alberta" and only show the first name field.
@@ -124,11 +124,11 @@ specifies the fields to return from the document.  Example: find the document wi
 
 The value `1` means the field will be included and a value of `0` means the 
 field will be excluded. By default, the `_id` field will be shown.
-TASK: 
+TASK: todo
 
 ### Updating documents
 
-`db.collection_name.update(query, update, options)`  
+__db.collection_name.update(query, update, options)__  
 Updates or replaces a document that matches the query. Where update 
 is a document with the fields to update. Options is an optional document 
 that can include the following fields: `upsert: <boolean>` which will create
@@ -139,9 +139,9 @@ Replace the document with the first name "Alberta" with the document
 ```bash
 > db.users.update({first: "Alberta"}, {first: "Artificial", last: "Al"})
 ```
-TASK  
+TASK: todo  
 
-`db.collection_name.update(query, {<operator>: {field: value}})`  
+__db.collection_name.update(query, {<operator>: {field: value}})__  
 Performs the modifies the fields of the docoument matching the query
 according to the `<operator>`.  Operators will begin with a `$` symbol.
 Example: set the last name field of the document with the name "Articical" 
@@ -150,7 +150,7 @@ to "Alien".
 > db.users.update({first: "Artificial"}, {$set: {last: "Alien"}})
 ```
 
-`db.collection_name.update(query, {$unset: {field: 1}})`  
+__db.collection_name.update(query, {$unset: {field: 1}})__  
 Removes a field. Example: remove the last name field for the document
 that has a first name of "Artificial".
 ```bash
@@ -158,20 +158,20 @@ db.users.update({first: "Artificial"}, {$unset: {last: 1}})
 ```
 TASK: remove the last name field for the user that has thefirst name "Arthur".   
 
-`db.collection_name.update({}, {$set: {field: value}}, {multi: true})`  
+__db.collection_name.update({}, {$set: {field: value}}, {multi: true})__  
 Updates all of the documents with the specified field  
 TASK: Update all users with the field "admin" and give it the value true.
 
 ### Deleting documents
 
-`db.collection_name.remove(query)`  
+__db.collection_name.remove(query)__  
 Deletes a single document that matches that matches query.  
 TASK: Remove the user with the first name "Artificial"
 
-`db.collection_name.remove({})`  
+__db.collection_name.remove({})__  
 Removes all documents 1 by 1.  
 
-`db.collection_name.drop()`  
+__db.collection_name.drop()__  
 Deletes the collection with the name collection_name. Example: delete the users
 collection in the test database. 
 ```bash
