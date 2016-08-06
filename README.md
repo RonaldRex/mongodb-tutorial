@@ -13,7 +13,7 @@ key-value pairs to organize data.  This is an example of JSON document:
 ```
 Here, firstName is a key and Alberta is a value.  A table in a relational
 database is organized into columns and rows. Where each column has a key
-and each row represents an entry. MongoDB is also schemaless which means 
+and each row represents a document. MongoDB is also schemaless which means 
 that documents can have different keys in them. 
 
 ## Installation and setup
@@ -39,7 +39,7 @@ enviroment variables.  Open the file from your terminal by typing the command
 `$ vi ~/.bash_profile`. You will add mongodb to your $PATH variable like so:
 `export PATH=/usr/local/mongodb/bin:$PATH`.  
 
-__Running MongoDB__
+__Running MongoDB__  
 One of the commands you will use is `mongod` which will start your MongodB
 server. You will also need to create the directory where the MongoDB server will store its data. By default it is /data/db. To do that from your terminal enter the following commands:  
 
@@ -60,51 +60,132 @@ contains multiple documents.  A document is the equivalent of a row in a table.
 The mongo shell is a program that lets us connect to your database from the
 terminal. After you have started MongoDB you can start the shell by 
 opening another terminal window and type the `mongo' command. Some useful
-commands are:
-```bash
+commands are:  
+
 list of available commands
+```bash
 > help
-
+```
 prints the names of the databases on the database server which the console is connected
+```bash
 > show dbs
+```
 
-switches to db_name
-> use db_name
+`use <database>` switches to <database> or creates the database if it doesn't exist. Example: create a database with the name test.
+```bash
+> use test
+```
 
-prints list of collections in the selected database
+### Creating documents
+
+`db.collection_name.insert(document)`  
+Adds a document to the collection_name collection. Creates a collection if 
+it doesn't exist. Example: create a collection named users in the test database and insert a document.
+```bash
+> db.users.insert({firstName: "Alberta", lastName: "Williams"})
+```
+TASK add insert another document with a firstName and lastName property.    
+
+Prints list of collections in the selected database.
+```bash
 > show collections
+```
 
-deletes collection
-> db.collection_name.drop();
+### Reading documents
+
+`db.collection_name.find()`  
+Returns all documents in the collection <collection_name>.  Alternatively,
+you can use `db.collection_name.find({}). Example:
+Get all of the documents from the users collection.
+```bash
+> db.users.find()  
+```
+
+`db.collection_name.find(filter)`  
+Returns all documents in the collection <collection_name> matching the filter.
+The filter is an object that has the form `{field: value}`. 
+Example: find the document with the first name "Alberta".
+```bash
+> db.users.find({first: "Alberta"})
+```
+TASK: find a document with a different first name.  
+
+`db.collection_name.find({field1: value, field2: value})`  
+Returns documents from the collection <collection_name> based on more than one field
+
+
+`db.collection_name.find(filter, projection)`  
+Returns the documents from the collection <collection_name> where filter is
+the criteria for the doucments to return and projection in an object that 
+specifies the fields to return from the document.  Example: find the document with the first name "Alberta" and only show the first name field.
+```bash
+> db.users.find({first: "Alberta"}, {first: 1, _id:0})
+```
+
+The value `1` means the field will be included and a value of `0` means the 
+field will be excluded. By default, the `_id` field will be shown.
+TASK: 
+
+### Updating documents
+
+`db.collection_name.update(query, update, options)`  
+Updates or replaces a document that matches the query. Where update 
+is a document with the fields to update. Options is an optional document 
+that can include the following fields: `upsert: <boolean>` which will create
+a new document if no matching document is found; `multi: <boolean>` which will
+update all documents that match the query; `writeConcern: <document>`. Example:
+Replace the document with the first name "Alberta" with the document 
+{first: "Artificial", last: "Al"}.
+```bash
+> db.users.update({first: "Alberta"}, {first: "Artificial", last: "Al"})
+```
+TASK  
+
+`db.collection_name.update(query, {<operator>: {field: value}})`  
+Performs the modifies the fields of the docoument matching the query
+according to the `<operator>`.  Operators will begin with a `$` symbol.
+Example: set the last name field of the document with the name "Articical" 
+to "Alien".
+```bash
+> db.users.update({first: "Artificial"}, {$set: {last: "Alien"}})
+```
+
+`db.collection_name.update(query, {$unset: {field: 1}})`  
+Removes a field. Example: remove the last name field for the document
+that has a first name of "Artificial".
+```bash
+db.users.update({first: "Artificial"}, {$unset: {last: 1}})
+```
+TASK: remove the last name field for the user that has thefirst name "Arthur".   
+
+`db.collection_name.update({}, {$set: {field: value}}, {multi: true})`  
+Updates all of the documents with the specified field  
+TASK: Update all users with the field "admin" and give it the value true.
+
+### Deleting documents
+
+`db.collection_name.remove(query)`  
+Deletes a single document that matches that matches query.  
+TASK: Remove the user with the first name "Artificial"
+
+`db.collection_name.remove({})`  
+Removes all documents 1 by 1.  
+
+`db.collection_name.drop()`  
+Deletes the collection with the name collection_name. Example: delete the users
+collection in the test database. 
+```bash
+> db.users.drop();
+```
 
 deletes database
+```bash
 > db.dropDatabase();
 ```
+TASK Delete the test database that you created
 
-## CRUD operations
-```bash
-finds all items matching query
-> db.collection_name.find(query)
-
-finds one item that matches query
-> db.collection_name.findOne(query)
-
-adds a document to the collection_name collection
-db.collection_name.insert(document)
-
-saves a document in the collection_name collection--a shorthand for upsert(no _id) or insert(with _id)
-> db.collection_name.save(document)
-
-updates items that match query in the collection_name collection with data object values
-> db.collection_name.update(query, {$set: data})
-
-removes all items from collection_name that matches query criteria
-> db.collection_name.remove(query)
-```
-
-## MongoDB and Node
-
-## Hosting a MongoDB server in the cloud
+## Exercises
+TODO
 
 ## Additional Resources
 [MongoDB download](https://www.mongodb.com/download-center#community)  
