@@ -1,4 +1,4 @@
-# MongoDB
+# Getting Started with MongoDB
 
 MongoDB is a non-relational database also known as a NoSQL database. 
 One of the differences between a MongoDB database and a relational
@@ -39,6 +39,8 @@ enviroment variables.  Open the file from your terminal by typing the command
 `$ vi ~/.bash_profile`. You will add mongodb to your $PATH variable like so:
 `export PATH=/usr/local/mongodb/bin:$PATH`.  
 
+### Windows installation
+
 __Running MongoDB__  
 One of the commands you will use is `mongod` which will start your MongodB
 server. You will also need to create the directory where the MongoDB server will store its data. By default it is /data/db. To do that from your terminal enter the following commands:  
@@ -76,11 +78,11 @@ prints the names of the databases on the database server which the console is co
 > use test
 ```
 
-### Creating documents
+## Creating documents
 
 __db.collection_name.insert(document)__  
-Adds a document to the collection_name collection. Creates a collection if 
-it doesn't exist. Example: create a collection named users in the test database and insert a document.
+Adds a document to the collection_name collection. Creates a collection
+inside the current database if it doesn't exist. Example: create a collection named users in the test database and insert a document.
 ```bash
 > db.users.insert({firstName: "Alberta", lastName: "Williams"})
 ```
@@ -91,7 +93,7 @@ Prints list of collections in the selected database.
 > show collections
 ```
 
-### Reading documents
+## Reading documents
 
 __db.collection_name.find()__  
 Returns all documents in the collection <collection_name>.  Alternatively,
@@ -126,7 +128,7 @@ The value `1` means the field will be included and a value of `0` means the
 field will be excluded. By default, the `_id` field will be shown.
 TASK: todo
 
-### Updating documents
+## Updating documents
 
 __db.collection_name.update(query, update, options)__  
 Updates or replaces a document that matches the query. Where update 
@@ -141,7 +143,7 @@ Replace the document with the first name "Alberta" with the document
 ```
 TASK: todo  
 
-__db.collection_name.update(query, {<operator>: {field: value}})__  
+__db.collection_name.update(query, {$operator: {field: value}})__  
 Performs the modifies the fields of the docoument matching the query
 according to the `<operator>`.  Operators will begin with a `$` symbol.
 Example: set the last name field of the document with the name "Articical" 
@@ -162,7 +164,7 @@ __db.collection_name.update({}, {$set: {field: value}}, {multi: true})__
 Updates all of the documents with the specified field  
 TASK: Update all users with the field "admin" and give it the value true.
 
-### Deleting documents
+## Deleting documents
 
 __db.collection_name.remove(query)__  
 Deletes a single document that matches that matches query.  
