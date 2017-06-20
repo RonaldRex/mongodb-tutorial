@@ -186,8 +186,6 @@ deletes database
 ```
 TASK Delete the test database that you created
 
-## Exercises
-TODO
 
 ## Additional Resources
 [MongoDB download](https://www.mongodb.com/download-center#community)  
